@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+  </head>
+  <body>
+    <script type="text/javascript">
+      let hd = new Object();
+      hd.name = "123";
+      console.dir(Object); //同函数一样 Object中也有__proto__和prototype
+
+      Object.prototype.show = function(){
+        console.log("show");
+      }
+      hd.show();
+
+      function User(){}
+      console.dir(User); //你再看看User.prototype.__proto__里面是不是有show方法
+      //因此
+      console.log(User.prototype.__proto__ == User.__proto__.__proto__);//true
+
+      console.log(Object.prototype); //通过打印可以看出 这里已经没有长辈了
+      console.log(Object.prototype.__proto__);//null
+
+    </script>
+  </body>
+</html>

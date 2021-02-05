@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+  </head>
+  <body>
+    <!--
+    1.函数有prototype,也有__proto__ , 实例只有__proto__
+    2.函数是Function的实例，函数的prototype是Object的实例
+    3.Function.__proto__和Function.prototype相等
+    4.Object.prototype.__proto__指向null
+
+  -->
+
+
+
+    <script type="text/javascript">
+
+      function Person(name,age){
+        this.name = name;
+        this.age = age;
+      }
+      var person1 = new Person('Mike',10);
+      console.log(Person === Person.prototype.constructor);//true
+      console.log(Person.prototype == person1);//false
+
+      //在原型对象中添加属性或者方法
+      Person.prototype.sex = '男';
+      var person2 = new Person('Alice',20);
+      person2.sex = '女';
+      console.log(person1.sex);
+      console.log(person2.sex);
+
+      function A(){}
+
+      A.prototype.sayA = function(){
+        console.log('from A');
+      }
+
+      function B(){}
+
+      B.prototype = new A();
+
+      B.prototype.sayB = function(){
+        console.log('from B');
+      }
+
+      var b1 = new B();
+      b1.sayB()
+      b1.sayA()
+
+      var F = function(){};
+      Object.prototype.a = function(){};
+      Function.prototype.b = function(){};
+      var f = new F();
+      console.log(f);//f 实例中没有b 属性 ,因为F不是Function类型
+
+      // 对象找不到属性就会去原型中找
+
+      class Student{
+
+      };
+      var stu = new Student();
+      console.log(stu);
+
+    </script>
+
+  </body>
+</html>

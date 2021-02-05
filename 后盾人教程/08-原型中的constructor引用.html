@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+  </head>
+  <body>
+
+<script type="text/javascript">
+
+function User(name){
+  this.name = name;
+}
+User.prototype.show = function(){
+  console.log(this.name);
+}
+//如果想加多个方法呢?
+User.prototype = {
+  constuctor:User,
+  show(){
+    console.log(this.name);
+  },
+  show2(){
+    console.log("show2");
+  }
+}
+
+
+console.dir(User);
+
+console.log(User.prototype.__proto__ = Object.prototype);
+console.log(User.prototype.constuctor == User);
+
+let lisi = new User.prototype.constuctor('李斯');
+console.log(lisi);
+
+</script>
+  </body>
+</html>

@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+  </head>
+  <body>
+    <script type="text/javascript">
+      let hd = {
+        show(){
+          console.log("show");
+        }
+      }
+      console.dir(hd);
+
+      // 为什么自己没有定义方法时，要通过长辈定义方法?
+hd.show();
+hd.__proto__.render = function(){
+  console.log("render");
+}
+hd.render();
+//如果自己有render方法那肯定是执行自己的
+
+    </script>
+
+  </body>
+</html>

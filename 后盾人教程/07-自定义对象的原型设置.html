@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+  </head>
+  <body>
+
+<script type="text/javascript">
+
+let hd = {name:"hd"};
+let parent = {
+  name: "parent",
+  show(){
+    console.log("parent method" + this.name);
+  }
+};
+Object.setPrototypeOf(hd,parent);
+hd.show();
+parent.show();
+console.log(Object.getPrototypeOf(hd));
+
+</script>
+  </body>
+</html>

@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+  </head>
+  <body>
+  <script type="text/javascript">
+
+    let hd = {};
+    console.log(hd.__proto__ == Object.prototype);//true
+    console.log(hd.__proto__);
+    console.dir(Object);
+
+
+    //同理
+    let str = "";
+    console.log(str.__proto__ == String.prototype);
+
+    let bool = false;
+    console.log(bool.__proto__ == Boolean.prototype);
+
+    let reg = /a/i;
+    console.log(reg.__proto__ == RegExp.prototype); 
+
+  </script>
+  </body>
+</html>

@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+    <style media="screen">
+
+    </style>
+    <script type="text/javascript" src="./jquery-1.12.4.min.js"></script>
+  </head>
+  <body>
+    <button type="button" name="button" >点我</button>
+
+    <script type="text/javascript">
+
+      $(function(){
+        $("button").on("click",function(){
+          // alert("on方式")
+          //window.open (URL, name, features, replace)
+          // window.open("http://c.biancheng.net/view/5845.html","学习","",false)
+
+          // win = window.open();  //打开新的空白窗口
+          // win.document.write ("<h1>这是新打开的窗口</h1>");  //在新窗口中输出提示信息
+          // win.focus ();  //让原窗口获取焦点
+          // win.opener.document.write ("<h1>这是原来窗口</h1>");  //在原窗口中输出提示信息
+          // console.log(win.opener == window);  //检测window.opener属性值
+
+          var url = "http://c.biancheng.net/view/5845.html";  //要打开的网页地址
+          var features = "height=500, width=800, top=100, left=100, toolbar=no, menubar=no, scrollbars=no,resizable=no, location=no, status=no";  //设置新窗口的特性
+          //动态生成一个超链接
+          document.write('<a href="http://c.biancheng.net/view/5845.html" target="newW">切换到C语言中文网首页</a>');
+          var me = window.open(url, "newW", features, true);  //打开新窗口
+          setTimeout (function () {  //定时器
+              if (me.closed) {
+                  console.log("创建的窗口已经关闭。");
+              } else {
+                  me.close();
+              }
+          }, 5000);  //半秒钟之后关闭该窗口
+        });
+      });
+
+    </script>
+
+  </body>
+</html>

@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+  </head>
+  <body>
+    <script type="text/javascript">
+
+      function User(){}
+      User.__proto__.view = function(){
+        console.log("User function view method");
+      };
+      User.view();
+
+      User.apply();
+
+      console.dir(User);
+
+//__proto__ 一般用于函数
+//prototype 一般用于函数实例
+
+
+
+    </script>
+
+  </body>
+</html>
