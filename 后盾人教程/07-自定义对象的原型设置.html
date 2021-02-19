@@ -15,7 +15,7 @@ let parent = {
     console.log("parent method" + this.name);
   }
 };
-Object.setPrototypeOf(hd,parent);
+Object.setPrototypeOf(hd,parent);//设置hd的父亲是parent
 hd.show();
 parent.show();
 console.log(Object.getPrototypeOf(hd));

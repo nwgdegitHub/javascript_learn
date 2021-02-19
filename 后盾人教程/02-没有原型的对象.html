@@ -7,12 +7,15 @@
   <body>
     <script type="text/javascript">
 
+      //基本不用
       let hd = Object.create(null,{
         name:{
           value: '后盾人'
         }
       })
       console.log(hd);
+      console.log(hd.hasOwnProperty("name"));
+      //hd没有原型 所以报错 也就是说hd是一个字面量对象
 
     </script>
 

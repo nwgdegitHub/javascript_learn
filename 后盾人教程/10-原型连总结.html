@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+  </head>
+  <body>
+    <script type="text/javascript">
+
+        let arr = [];
+        let arr2 = new Array;
+        console.log(arr.__proto__.__proto__ == Object.prototype);
+        console.log(Object.prototype.__proto__);
+
+        let a = {name:'a'};
+        let b = {name:'b',
+          show(){
+            console.log(this.name);
+          },
+          show2(){
+            console.log('show2');
+          }
+        };
+        let c = {name:'c'};
+        Object.setPrototypeOf(a,b);
+        console.log(a);
+
+        Object.setPrototypeOf(c,b);
+        a.show();
+        c.show();
+
+        a.show2();
+        c.show2();
+
+    </script>
+
+  </body>
+</html>

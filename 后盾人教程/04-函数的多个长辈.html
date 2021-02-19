@@ -8,19 +8,36 @@
     <script type="text/javascript">
 
       function User(){}
+      //JS 中的函数身份特殊 相当于又当爹又当妈
+
+      let hd = new User()//当构造函数
+
+      console.log(hd);//类似于数组对象 有父亲 有爷爷 都是用.__proto__ 实例对象上没有prototype属性
+
+      //把函数当对象时可以这么用User.__proto__
       User.__proto__.view = function(){
         console.log("User function view method");
       };
       User.view();
+      //注意这里hd无法调用view()
 
-      User.apply();
+      User.apply();//父亲的方法
 
       console.dir(User);
+      //函数的结构中既有__proto__ 又有prototype
 
-//__proto__ 一般用于函数
-//prototype 一般用于函数实例
+      //__proto__ 用于函数
+      //prototype 用于函数实例
+
+      //给函数实例添加show方法
+      User.prototype.show = function(){
+        console.log("User.prototype.show");
+      }
+      hd.show()
+      //注意这里 User 无法调用show()
 
 
+      console.log(User.prototype == hd.__proto__);//true 共一个父亲
 
     </script>
 

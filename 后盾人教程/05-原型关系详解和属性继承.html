@@ -6,8 +6,13 @@
   </head>
   <body>
     <script type="text/javascript">
+
+      //JS内置了很多函数 如： Object Function Array JS中一切皆对象，所以函数也是对象
+
       let hd = new Object();
       hd.name = "123";
+      console.dir(hd); //使用new 创建的对象实例 和 let obj = {} 一样 只有父亲 没有爷爷
+
       console.dir(Object); //同函数一样 Object中也有__proto__和prototype
 
       Object.prototype.show = function(){
@@ -16,12 +21,17 @@
       hd.show();
 
       function User(){}
-      console.dir(User); //你再看看User.prototype.__proto__里面是不是有show方法
-      //因此
-      console.log(User.prototype.__proto__ == User.__proto__.__proto__);//true
+console.log(User instanceof Object);
+      console.dir(User); //你再看看User.prototype.__proto__里面是不是有show方法 为什么?
 
-      console.log(Object.prototype); //通过打印可以看出 这里已经没有长辈了
-      console.log(Object.prototype.__proto__);//null
+      //因此 原型也是一个对象 是对象就有__proto__
+      console.log(User.prototype.__proto__ == User.__proto__.__proto__);//true
+      //所以User.prototype 和 User.__proto__ 共一个父亲 也就是Object.prototype
+
+      console.dir(Object.prototype); //通过打印可以看出 这里已经没有长辈了 到头了
+      console.dir(Object.prototype.__proto__);//null
+
+
 
     </script>
   </body>

@@ -14,12 +14,13 @@
       console.dir(hd);
 
       // 为什么自己没有定义方法时，要通过长辈定义方法?
-hd.show();
-hd.__proto__.render = function(){
-  console.log("render");
-}
-hd.render();
-//如果自己有render方法那肯定是执行自己的
+      // 是因为要创建n个对象 其他对象也可以用 也可以不用吗?
+      hd.show();
+      hd.__proto__.render = function(){
+        console.log("render");
+      }
+      hd.render();
+      //如果自己有render方法那肯定是执行自己的
 
     </script>
 

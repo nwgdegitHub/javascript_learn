@@ -8,10 +8,28 @@
     <script type="text/javascript">
 
       let arr = [1,2,3]
+
       console.log(arr);
+      console.log(arr.concat("www.9981ys1.com"));
+      //arr
+      //arr.__proto__
+      //arr.__proto__.__proto__
+      //没了
 
       let obj = {}
       console.log(obj);
+      //obj
+      //obj.__proto__
+      //没了
+
+      let obj2 = {
+        name:"123"
+      }
+      console.log(Object.getPrototypeOf(obj) == Object.getPrototypeOf(obj2));
+      //obj和obj2是同一个父亲
+
+      let arr2 = new Array;
+      console.log(arr2);
 
     </script>
 
