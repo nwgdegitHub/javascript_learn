@@ -18,7 +18,7 @@
       Object.prototype.show = function(){
         console.log("show");
       }
-      hd.show();
+      hd.show();//因为hd是Object new出来的 所以能使用show方法
 
       function User(){}
 console.log(User instanceof Object);
