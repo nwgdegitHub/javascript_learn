@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+  </head>
+  <body>
+    <script type="text/javascript">
+
+      let arr = [1,2,3,43,4]
+      console.log(Math.max(...arr));
+
+      let hd = {
+        data : [1,2,3,43,4]
+      };
+
+      console.log(Math.max.call(null, ...hd.data));
+
+
+      let xj = {
+        lessons: { js: 87, php: 63, node: 99, linux: 88}
+      }
+
+      console.log(Math.max.apply(null, Object.values(xj.lessons)));
+
+    </script>
+
+  </body>
+</html>

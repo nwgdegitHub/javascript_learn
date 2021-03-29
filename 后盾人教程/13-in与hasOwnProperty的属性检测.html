@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+  </head>
+  <body>
+    <script type="text/javascript">
+
+      let a = { url: "houdunren"};
+      let b = { name: "后盾人"};
+      console.log("url" in a);
+      console.log(a.hasOwnProperty("url"));
+      console.log(a.hasOwnProperty("name"));
+
+      for(const key in a){
+        console.log(key);
+        console.log(a[key]);
+
+      }
+
+
+
+
+    </script>
+
+  </body>
+</html>
