@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+  </head>
+  <body>
+    <script type="text/javascript">
+
+      <!-- __proto__ getter setter -->
+      let hd = { name: "后盾人" }
+      hd.__proto__ = {
+        show() {
+          console.log(this.name);
+
+        }
+      }
+      // console.log(hd.show());
+      // console.log(hd.__proto__);
+
+      hd.__proto__ = 99
+      // console.log(hd.__proto__);
+      hd.show()
+
+
+
+      let xj = {
+        action: {},
+        get proto(){
+          return this.action;
+        },
+        set proto(obj){
+          if (obj instanceof Object) {
+            this.action = obj
+          }
+          console.log(obj);
+        }
+      }
+      hd.proto = {
+        view:function(){
+
+        }
+      }
+      hd.proto = "abc"
+      console.log(hd.proto);
+
+
+      let hs = {}
+      console.dir(hs);
+      hs.__proto__ = "123"
+      console.dir(hd.__proto__);
+
+    </script>
+  </body>
+</html>

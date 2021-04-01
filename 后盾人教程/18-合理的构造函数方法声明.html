@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+  </head>
+  <body>
+    <script type="text/javascript">
+
+      <!-- 函数中不要写过多方法 以免使用函数对象时 造成不必要的内存浪费 -->
+
+      function User(name) {
+        this.name = name;
+      }
+
+      User.prototype = {
+        constructor: User,
+        show() {
+          console.log(this.name);
+        },
+        get() {
+          console.log("get...");
+        }
+      };
+
+      let lisi = new User("李四")
+      let xj = new User("张三")
+
+      lisi.show()
+      xj.show()
+
+      console.log(lisi);
+      console.log(xj);
+
+    </script>
+
+  </body>
+</html>

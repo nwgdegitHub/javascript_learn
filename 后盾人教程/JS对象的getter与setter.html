@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+  </head>
+  <body>
+    <script type="text/javascript">
+
+      var obj  = {
+        a : 7,
+        get b(){ return this.a + 1 },
+        set c(x){ this.a = x/2 }
+      }
+      console.log(obj.a); //7
+      console.log(obj.b); //8
+      obj.c = 50;
+      console.log(obj.a); //25
+
+      //注意get set的名字不要和属性相同 容易造成死循环
+
+      //Object.create 方法 创建一个拥有指定原型和若干个指定属性的对象
+      (function(){
+        var obj2 = Object.create(Object.prototype,
+
+                    {
+                      bar: {
+                        get: function(){ return 10 },
+                        set: function(val){ console.log("Setting obj2.bar to ", val)}
+                      }
+                    }
+                  );
+          console.log(obj2.bar); //10
+          obj2.bar = 12; //Setting obj2.bar to  12
+      })();
+      // 更多请参考：https://www.jb51.net/article/141739.htm
+
+
+
+
+
+    </script>
+
+  </body>
+</html>

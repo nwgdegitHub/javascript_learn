@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+  </head>
+  <body>
+    <script type="text/javascript">
+      // __proto__  是非标准的
+      let user = {
+        show(){
+          return this.name
+        }
+      }
+
+      let hd = { name: "后盾人" }
+      Object.setPrototypeOf(hd, user)
+      console.log(hd.show());
+      console.log(Object.getPrototypeOf(hd));
+
+
+    </script>
+  </body>
+</html>

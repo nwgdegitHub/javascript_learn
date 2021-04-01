@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+  </head>
+  <body>
+    <script type="text/javascript">
+      let user = {
+        show(){
+          return this.name
+        }
+      }
+      // let hd = Object.create(user)
+      // console.log(hd);
+      // hd.name = "后盾人"
+
+
+      //这种方式不能获取name
+      // let hd = Object.create(user,{
+      //   name:{
+      //     value:"后盾人"
+      //   }
+      // })
+      // console.log(hd.show());
+
+      let hd = {name: "后盾人"}
+      hd.__proto__ = user
+      console.log(hd.__proto__);
+
+
+    </script>
+  </body>
+</html>

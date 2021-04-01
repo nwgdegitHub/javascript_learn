@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+    <button type="button" name="button">嘻嘻</button>
+  </head>
+  <body>
+    <script type="text/javascript">
+
+      // 强烈不推荐在Object的原型中添加方法
+      Object.prototype.hide = function(){
+        this.style.display = "none"
+      }
+    </script>
+
+  </body>
+</html>

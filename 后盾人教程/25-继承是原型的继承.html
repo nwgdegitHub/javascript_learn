@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+  </head>
+  <body>
+    <script type="text/javascript">
+
+      let obj = {}
+      console.log(obj.__proto__);
+      console.log(Object.getPrototypeOf(obj));
+
+
+      // 继承是原型的继承 而不是改变构造函数的原型
+
+
+      function User() {
+        //不推荐这么写 推荐写到User.prototype
+        // this.name = function() {
+        //   console.log("User name method");
+        // }
+      }
+      User.prototype.name = function(){
+        console.log('user.name');
+      }
+      let hd = new User()
+      hd.name()
+
+      //现在Admin也想用name 那么希望用继承
+      function Admin(){}
+      Admin.prototype.__proto__ = User.prototype //或者：
+      //Admin.prototype = Object.create(User.prototype)
+      //这样才不会覆盖自己的方法
+
+      //这样就可以了吗？ 假设Admin原型上还有一个role方法 那其实这个方法是添加到哪里了？ User.prototype
+      Admin.prototype.role = function(){
+        console.log("admin.role");
+      }
+
+
+
+      //如果还有一个Member 他也有同样一个role 这样造成Member中的role把其他role覆盖了
+      function Member(){}
+      Member.prototype.__proto__ = User.prototype//或者：
+      //Member.prototype = Object.create(User.prototype)
+      //这样才不会覆盖自己的方法
+
+
+      Member.prototype.role = function(){
+        console.log("member.role");
+      }
+
+      let ad = new Admin
+      ad.name()
+      ad.role()
+
+      let mem = new Member
+      mem.role()
+
+
+
+
+    </script>
+  </body>
+</html>
