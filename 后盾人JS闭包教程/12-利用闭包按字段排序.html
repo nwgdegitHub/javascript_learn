@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+  </head>
+  <body>
+    <script type="text/javascript">
+
+      let lessons = [
+        {
+          title: "CSS",
+          click: 11,
+          price: 100
+        },
+        {
+          title: "RN",
+          click: 45,
+          price: 1
+        },
+        {
+          title: "盒子模型",
+          click: 29,
+          price: 300
+        }
+      ];
+
+      let hd = lessons.sort(function(a,b){
+        return a.price>b.price?1:-1
+      });
+
+      console.table(hd);
+
+      let hd2 = lessons.sort(function(a,b){
+        return a.click>b.click?1:-1
+      });
+
+      console.table(hd2);
+
+      function order(field, type = "asc") {
+        return function(a,b){
+          if(type == "asc") return a[field] > b[field] ? 1:-1;
+          return a[field] > b[field] ? -1:1;
+        }
+      }
+      let hd3 = lessons.sort(order("price","desc"))
+console.table(hd3);
+
+
+
+
+    </script>
+  </body>
+</html>

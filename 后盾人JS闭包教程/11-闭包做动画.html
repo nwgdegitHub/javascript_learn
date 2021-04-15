@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+    <style media="screen">
+      button{
+        position: absolute;
+      }
+    </style>
+  </head>
+  <body>
+    <button>滚滚长江东逝水</button>
+    <!-- <button>三国</button> -->
+
+  </body>
+  <script type="text/javascript">
+    let btns = document.querySelectorAll("button");
+    btns.forEach(function(item){
+      console.log(item);
+      let left = 1; //重复点击加速
+      let interval = false //解决加速问题 防止产生无限个定时器
+      item.addEventListener("click",function(){
+        // let left = 1; //重复点击产生抖动
+        if(!interval){
+          interval = true
+          setInterval(function(){
+            item.style.backgroundColor = 'red'
+            item.style.left = left++ + "px";
+            console.log(item.style.left);
+          },5);
+        }
+
+      });
+    });
+
+  </script>
+</html>

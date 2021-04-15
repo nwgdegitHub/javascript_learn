@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+  </head>
+  <body>
+    <script type="text/javascript">
+
+      // var 没有纳入块级作用域 用var 声明的变量在全局作用域中 即使var 在{}
+      {
+        var a = 100;
+      }
+      //下面两个a 分别在不同的块级作用域
+      {
+        let a = 1
+      }
+      {
+        let a = 2
+      }
+      console.log(a); // 100
+      console.log(window.a); // 100
+
+
+    </script>
+
+  </body>
+</html>

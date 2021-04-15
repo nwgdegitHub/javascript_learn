@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+  </head>
+  <body>
+    <script type="text/javascript">
+
+    console.log("---如果没写let This = this; 此时this指window 因为this始终指向调用当前函数的对象---");
+    let hd1 = {
+      user: "后盾人",
+
+      get: function(){
+
+        return function(){
+          return this.user;
+        }
+      }
+    };
+    let a1 = hd1.get();
+    console.log(a1()); //undefined
+
+
+      console.log("------ 使用let This = this; 解决--------");
+      let hd2 = {
+        user: "后盾人",
+
+        get: function(){
+          let This = this;
+
+          return function(){
+            return This.user;
+          }
+        }
+      };
+      //console.log(hd2.get());
+
+
+      let a2 = hd2.get();
+      console.log(a2());
+
+
+
+      console.log("-----------除了let This = this; 还可以使用箭头函数来解决-----------");
+
+      let hd3 = {
+        user: "后盾人",
+
+        get: function(){
+
+          return () => {
+            return this.user;
+          }
+        }
+      };
+      //console.log(hd3.get());
+
+
+      let a3 = hd3.get();
+      console.log(a3());
+
+    </script>
+  </body>
+</html>

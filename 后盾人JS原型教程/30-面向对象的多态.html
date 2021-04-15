@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+  </head>
+  <body>
+    <script type="text/javascript">
+
+      function User() {}
+      User.prototype.show = function(){
+        console.log(this.description());
+      }
+
+      function Admin(){}
+      Admin.prototype.__proto__ = User.prototype //或者：
+      //Admin.prototype = Object.create(User.prototype)
+      //这样才不会覆盖自己的方法
+      Admin.prototype.description = function(){
+        return "管理员在这"
+      }
+
+      //如果还有一个Member 他也有同样一个role 这样造成Member中的role把其他role覆盖了
+      function Member(){}
+      Member.prototype.__proto__ = User.prototype//或者：
+      //Member.prototype = Object.create(User.prototype)
+      //这样才不会覆盖自己的方法
+      Member.prototype.description = function(){
+        return "会员在这"
+      }
+
+
+      for(const obj of [new Admin, new Member]){
+        obj.show()
+      }
+
+
+    </script>
+  </body>
+</html>

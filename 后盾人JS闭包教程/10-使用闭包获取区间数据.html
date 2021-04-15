@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+  </head>
+  <body>
+    <script type="text/javascript">
+      let arr = [1,23,4,5,6,7,8,9,21,34]
+      let hd = arr.filter(function(v){
+        return v >= 2 && v <= 9
+      })
+      console.log(hd);
+
+      let hd2 = arr.filter(function(v){
+        return v >= 6 && v <= 10
+      })
+      console.log(hd2);
+
+      //
+      function between(a,b){
+        return function(v){
+          return v >= a && v <= b;
+        }
+      }
+      console.log( arr.filter(between(30,90)) );
+
+
+    </script>
+  </body>
+</html>
