@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+  </head>
+  <body>
+
+    <!--
+
+        // 从语法上说，Promise 是一个对象，从它可以获取异步操作的消息。
+        // 也是异步编程的一种解决方案。
+
+//两个特点:
+1.
+    Promise 异步操作有三种状态：
+    pending（进行中）、
+    fulfilled（已成功）和
+    rejected（已失败）。除了异步操作的结果，任何其他操作都无法改变这个状态。
+2.
+Promise 对象只有：从 pending 变为 fulfilled 和从 pending 变为 rejected 的状态改变。
+只要处于 fulfilled 和 rejected ，状态就不会再变了即 resolved（已定型）。 -->
+
+
+
+    <script type="text/javascript">
+
+      const p1 = new Promise(function(resove,reject){
+        resove('success1')
+        resove('success2')
+      })
+
+      const p2 = new Promise(function(resove,reject){
+        resove('success3')
+        reject('reject')
+      })
+
+      p1.then(function(value){
+        console.log("p1.then---1 ==> " + value);
+      })
+      p1.then(function(value){
+        console.log("p1.then---2 ==> " + value); //resove就已经结束了 不会再有success2
+      })
+
+      p2.then(function(value){
+        console.log("p2.then---1 ==> " + value);
+      })
+      p2.then(function(value){
+        console.log("p2.then---2 ==> " + value); //同样
+      })
+
+
+      //不给回调函数？
+      // const p3 = new Promise()
+      // p3.then(function(value){
+      //   console.log("不给回调函数 ==> " + value); //报错
+      // })
+
+      //then 方法将返回一个 resolved 或 rejected 状态的 Promise 对象用于链式调用，
+      //且 Promise 对象的值就是这个返回值。
+      const p4 = new Promise(function(resove,reject){
+        resove(1);
+      }).then(function(value){
+        console.log("第一个then===>"+value);
+        return value*2;
+      }).then(function(value){
+        console.log("第二个then===>"+value);
+      }).then(function(value){
+        console.log("第三个then===>"+value);
+        return Promise.resolve('Promise.resolve')
+      }).then(function(value){
+        console.log("第四个then===>"+value);
+        return Promise.reject('reject')
+      }).then(function(value){
+        console.log("第五个then resove===>"+value); //无
+      },function(err){
+        console.log("第五个then reject===>"+err);
+      })
+
+
+
+
+
+
+
+
+
+
+
+    </script>
+
+  </body>
+</html>
