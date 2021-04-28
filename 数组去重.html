@@ -13,6 +13,7 @@
       let arr2 = [...new Set(arr)]
       console.log(arr2);
 
+      //1+...+100
       function add(n1,n2){
         var n = n1 + n2;
         if(n2+1>100){
@@ -34,7 +35,65 @@
       console.log(Sum(100));
 
 
+      //打乱数组
+      var arr3 = [1,2,3,4,5,6,7,8,9,10]
+      console.log(Math.random()-0.5);
+      arr3.sort(function(){
+        return Math.random()-0.5
+      })
+      console.log(arr3);
 
+      //sort()默认按字母顺序排序
+      //sort(function(){}) 传入一个函数 如果返回值<0 则位置互换 否则不变
+
+      let arr4 = [2, 5, 7, 9]
+      arr4.sort(function(a,b){
+
+        console.log("a==="+a+",b==="+b);
+        //a===5,b===2
+        //a===7,b===5
+        //a===9,b===7
+        if(a>b){
+          return 1;
+        }else{
+          return -1;
+        }
+      })
+      console.log(arr4);
+
+      let arr5 = [9,7,5,2]
+      arr5.sort(function(a,b){
+
+        console.log("a==="+a+",b==="+b);
+        //a===7,b===9
+        //a===5,b===7
+        //a===2,b===5
+
+        if(a>b){
+          return 1;
+        }else{
+          return -1;
+        }
+
+      })
+      console.log(arr5);
+
+
+      let arr6 = [8,6,4,1]
+      arr6.sort(function(){
+        // return 1; //降序
+        // return 0; //不变
+        return -1; //升序
+      })
+      console.log(arr6);
+
+      let arr7 = ["hi","ab","mn","abcd"]
+      arr7.sort(function(){
+        // return 1; //降序
+        // return 0; //不变
+        return -1; //升序
+      })
+      console.log(arr7);//["abcd", "mn", "ab", "hi"]
 
     </script>
 

@@ -21,6 +21,13 @@
       console.log(a); // 100
       console.log(window.a); // 100
 
+      function aaa(){
+        var bbb = 999
+
+      }
+      // console.log(bbb); //Uncaught ReferenceError: bbb is not defined
+      console.log(window.bbb); //undefined
+
 
     </script>
 

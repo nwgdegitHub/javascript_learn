@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+  </head>
+  <body>
+    <script type="text/javascript">
+
+      //1.原型链继承，核心是 将父类实例作为子类的原型
+      //为什么不是改变构造函数的原型? 像这样Cat.prototype = Animal.prototype 呢?
+      console.log("===============1.原型链继承，核心是 将父类实例作为子类的原型===============");
+      function Animal(name){
+        this.name = name || 'Animal';
+        this.sleep = function(){
+          console.log(this.name+"在睡觉!");
+        }
+      }
+      Animal.prototype.eat = function(food){
+        console.log(this.name+"在吃"+food);
+      }
+
+      function Cat(){}
+      Cat.prototype = new Animal()
+      //或者
+      // Cat.prototype.__proto__ = Animal.prototype //有bug 这样子类不能访问构造函数里的内容
+
+      Cat.prototype.name = "cat"
+
+      var cat = new Cat()
+      console.log(cat.name);
+      console.log(cat.eat('fish'));
+      console.log(cat.sleep());
+      console.log(cat instanceof Animal); //true
+      console.log(cat instanceof Cat); //true
+
+
+
+
+      //2.构造继承 ,核心：使用父类的构造函数来增强子类实例，等于是复制父类的实例属性给子类（没用到原型）
+      console.log("===============2.构造继承===============");
+      function Dog(){
+        Animal.call(this)
+        this.name = name || 'Tom'
+      }
+
+      var dog = new Dog()
+      console.log(dog.name);
+      console.log(dog.sleep());
+      console.log(dog instanceof Animal); //false
+      console.log(dog instanceof Dog); //true
+
+
+      //3. 实例继承, 核心：为父类实例添加新特性，作为子类实例返回
+      console.log("===============3.实例继承, 核心：为父类实例添加新特性，作为子类实例返回===============");
+      function Bird(){
+        var instance = new Animal()
+        instance.name = name || 'Jack'
+        return instance
+
+      }
+
+      var bird = new Bird()
+      console.log(bird.name);
+      console.log(bird.sleep());
+      console.log(bird instanceof Animal); //true
+      console.log(bird instanceof Bird);  //false
+
+      //4.拷贝继承
+      //再定一个爬行动物构造函数，拷贝继承支持多继承
+      console.log("===============4.拷贝继承,支持多继承===============");
+      function Crawler(){
+        this.speak = function(){
+          console.log("爬行动物在叫");
+        }
+      }
+
+
+      function Tiger(){
+        var animal = new Animal()
+        for (var p in animal) {
+          console.log("遍历animal====>"+p);
+          Tiger.prototype[p] = animal[p]
+        }
+
+        var crawler = new Crawler()
+        for (var p in crawler) {
+          console.log("遍历crawler====>"+p);
+          Tiger.prototype[p] = crawler[p]
+        }
+
+      }
+      var tiger = new Tiger()
+      console.log(tiger.name);
+      console.log(tiger.sleep());
+      console.log(tiger.speak());
+      console.log(tiger instanceof Animal); //false
+      console.log(tiger instanceof Tiger);  //true
+
+
+      //5.组合继承 ，核心：通过调用父类构造，继承父类的属性并保留传参的优点，然后通过将父类实例作为子类原型，实现函数复用
+      console.log("===============5.组合继承===============");
+      function Pig(name){
+        Animal.call(this)
+        this.name = name || '猪'
+      }
+      Pig.prototype = new Animal()
+
+      //修复构造函数指向
+      Pig.prototype.constructor = Pig;
+      var pig = new Pig()
+      console.log(pig.name);
+      console.log(pig.sleep());
+      console.log(pig instanceof Animal); //true
+      console.log(pig instanceof Pig);  //true
+
+
+
+      //6. 寄生组合继承， 核心：通过寄生方式，砍掉父类的实例属性，这样，在调用两次父类的构造的时候，就不会初始化两次实例方法/属性，避免的组合继承的缺点
+      console.log("===============6.寄生组合继承1===============");
+      function Sheep(name) {
+        Animal.call(this)
+        this.name = name || '羊'
+      }
+      (
+        function(){
+          // 创建一个没有实例方法的类
+          var Super = function(){}
+          Super.prototype = Animal.prototype
+
+          //将实例作为子类的原型
+          Sheep.prototype = new Super()
+
+        }
+      )()
+
+      var sheep = new Sheep();
+      console.log(sheep.name);
+      console.log(sheep.sleep());
+      console.log(sheep instanceof Animal); // true
+      console.log(sheep instanceof Sheep); //true
+
+      Sheep.prototype.constructor = Sheep; // 需要修复下构造函数
+
+      //或者:
+      console.log("===============6.寄生组合继承2===============");
+      function Wolf(name){
+        Animal.call(this)
+        this.name = name || '狼'
+      }
+      Wolf.prototype = Object.create(Animal.prototype, {
+        constructor: {
+          value: Wolf,
+          enumerable: false,
+          writable: true,
+          configurable:true
+        }
+      })
+      var wolf = new Wolf();
+      console.log(wolf.name);
+      console.log(wolf.sleep());
+      console.log(wolf instanceof Animal); // true
+      console.log(wolf instanceof Wolf); //true<br>以上继承实现的核心就是将父类的原型赋值给了子类，并且将构造函数设置为子类，这样既解决了无用的父类属性问题，还能正确的找到子类的构造函数。
+
+
+      //7. ES6 Class继承, 核心： 使用 extends 表明继承自哪个父类，并且在子类构造函数中必须调用 super，这段代码可以看成 Animal.call(this, name)。Class 的本质就是函数
+      console.log("===============7.ES6 Class继承===============");
+      class Duck extends Animal {
+        constructor(name) {
+          super(name)
+          this.name= name || 'Animal';
+        }
+      }
+      var duck = new Duck();
+      console.log(duck.name);
+      console.log(duck.sleep());
+      console.log(duck instanceof Animal); // true
+      console.log(duck instanceof Duck); //true
+
+
+    </script>
+
+  </body>
+</html>
