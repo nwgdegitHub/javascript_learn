@@ -40,13 +40,13 @@
       //2.构造继承 ,核心：使用父类的构造函数来增强子类实例，等于是复制父类的实例属性给子类（没用到原型）
       console.log("===============2.构造继承===============");
       function Dog(){
-        Animal.call(this)
+        Animal.call(this) //将this指向（）中的对象
         this.name = name || 'Tom'
       }
 
       var dog = new Dog()
-      console.log(dog.name);
-      console.log(dog.sleep());
+      console.log(dog.name); //Tom
+      console.log(dog.sleep()); //Tom在睡觉 ,另外控制台之所以输出undefinded 是因为这里log中的结果是没有返回值的
       console.log(dog instanceof Animal); //false
       console.log(dog instanceof Dog); //true
 
@@ -61,8 +61,8 @@
       }
 
       var bird = new Bird()
-      console.log(bird.name);
-      console.log(bird.sleep());
+      console.log(bird.name); //Jack
+      console.log(bird.sleep()); //Jack在睡觉
       console.log(bird instanceof Animal); //true
       console.log(bird instanceof Bird);  //false
 
@@ -79,7 +79,7 @@
       function Tiger(){
         var animal = new Animal()
         for (var p in animal) {
-          console.log("遍历animal====>"+p);
+          console.log("遍历animal属性和函数　====>"+p);
           Tiger.prototype[p] = animal[p]
         }
 
@@ -91,9 +91,9 @@
 
       }
       var tiger = new Tiger()
-      console.log(tiger.name);
-      console.log(tiger.sleep());
-      console.log(tiger.speak());
+      console.log(tiger.name);//Animal
+      console.log(tiger.sleep());//Animal在睡觉
+      console.log(tiger.speak());//爬行动物在叫
       console.log(tiger instanceof Animal); //false
       console.log(tiger instanceof Tiger);  //true
 
@@ -109,8 +109,8 @@
       //修复构造函数指向
       Pig.prototype.constructor = Pig;
       var pig = new Pig()
-      console.log(pig.name);
-      console.log(pig.sleep());
+      console.log(pig.name); //猪
+      console.log(pig.sleep()); //猪在睡觉
       console.log(pig instanceof Animal); //true
       console.log(pig instanceof Pig);  //true
 
@@ -122,8 +122,7 @@
         Animal.call(this)
         this.name = name || '羊'
       }
-      (
-        function(){
+      (function(){
           // 创建一个没有实例方法的类
           var Super = function(){}
           Super.prototype = Animal.prototype
@@ -131,12 +130,11 @@
           //将实例作为子类的原型
           Sheep.prototype = new Super()
 
-        }
-      )()
+        })()
 
       var sheep = new Sheep();
-      console.log(sheep.name);
-      console.log(sheep.sleep());
+      console.log(sheep.name); //羊
+      console.log(sheep.sleep()); //羊在睡觉
       console.log(sheep instanceof Animal); // true
       console.log(sheep instanceof Sheep); //true
 
@@ -168,7 +166,8 @@
       class Duck extends Animal {
         constructor(name) {
           super(name)
-          this.name= name || 'Animal';
+          console.log("Duck constructor == >> "+name); //undefined
+          this.name= name || 'Duck';
         }
       }
       var duck = new Duck();

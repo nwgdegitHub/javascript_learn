@@ -35,8 +35,9 @@ Promise 对象只有：从 pending 变为 fulfilled 和从 pending 变为 reject
         reject('reject')
       })
 
+//.then我的理解就是解除非活跃状态 得到一个结果
       p1.then(function(value){
-        console.log("p1.then---1 ==> " + value);
+        console.log("p1.then---1 ==> " + value);//success1
       })
       p1.then(function(value){
         console.log("p1.then---2 ==> " + value); //resove就已经结束了 不会再有success2
