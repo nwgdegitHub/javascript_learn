@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+  </head>
+  <body>
+    <script type="text/javascript">
+
+      //JS 代码是从上到下执行的
+
+
+      console.log(name);
+
+      // var name = "LW" //这句如果注释 上一句报错 因为编译了 没找到这个变量； 而如果打开，上一句打印undefined，这才是正常的
+
+
+
+
+      //那函数也一样
+
+      greet() //这里JS编译器已经知道了 有这么个函数 所以没有报错 ； 反之把后面的函数声明换成表达式的形式 就不行了
+
+      function greet(){
+        console.log("greet...");
+      }
+
+// var greet = function greet(){
+//   console.log("greet...");
+// }
+
+
+//变量的提升不仅在全局作用域 在函数中也是存在的
+
+printInfo()
+
+console.log(age); //报错
+
+function printInfo(){
+
+  console.log(age);//undefined
+
+
+  var age = 100
+}
+
+
+
+    </script>
+  </body>
+</html>

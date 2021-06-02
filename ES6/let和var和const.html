@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+  </head>
+  <body>
+    <script type="text/javascript">
+
+
+      // if (false) {
+      //   var a = 1;
+      // }
+      // console.log(a); //undefined 不会报错
+
+      // 上面等价于
+      // var b;
+      // if (false) {
+      //   b = 1;
+      // }
+      // console.log(b); //undefined
+
+      // 这里设计一个词 ： 变量提升, 用var 声明的变量 会 变量提升
+      // 而let 则不会
+
+      // if (false) {
+      //   let c = 1;
+      // }
+      // console.log(c); //Uncaught ReferenceError: c is not defined
+
+
+      //重复定义会报错
+      // var d = 1;
+      // let d = 2;
+      //Uncaught SyntaxError: Identifier 'd' has already been declared
+
+      // let e = 1;
+      // console.log(window.e); // undefined
+      //
+      // const f = 1;
+      // f = 3; // 禁止修改
+      //
+      // 但是定义对象时可以修改, why?
+      // const g = {
+      //   value: 1,
+      // };
+      // g.value = 2;
+      // console.log(g); // {value: 2}
+      //解释：
+      // 因为对象是引用类型的，g中保存的仅是对象的指针，
+      // 这就意味着，const仅保证指针不发生改变，修改对象的属性不会改变对象的指针，
+      // 所以是被允许的。
+      // 也就是说const定义的引用类型只要指针不发生改变，其他的不论如何改变都是允许的。
+
+
+
+    </script>
+  </body>
+</html>
