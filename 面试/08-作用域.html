@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+  </head>
+  <body>
+    <script type="text/javascript">
+      let x = 10
+      function f1(){
+        console.log(x);//10
+        return x;
+      }
+      let res = f1()
+      console.log(res);//10
+      //所以用let声明的变量 能全局使用
+
+      const y = 20
+      function f2(){
+        console.log(y);//20
+        return y;
+      }
+      let res2 = f2()
+      console.log(res2);//20
+
+      var z = 30
+      function f3(){
+        console.log(z);//30
+        return z;
+      }
+      var res3 = f3()
+      console.log(res3);//30
+
+      // let和var的区别?
+      //1. ES6 新增了let命令，用来声明局部变量。它的用法类似于var，但是所声明的变量，只在let命令所在的代码块内有效，而且有暂时性死区的约束。
+      // var 没有纳入块级作用域 用var 声明的变量在全局作用域中 即使var 在{}
+      {
+        var a = 100;
+      }
+      //下面两个a 分别在不同的块级作用域
+      {
+        let a = 1
+      }
+      {
+        let a = 2
+      }
+      console.log(a); // 100
+      console.log(window.a); // 100
+      //这说明let a变量只在 花括号内有效
+
+      //2. let和var定义for循环的初值的不同
+      // JS中的for循环体比较特殊，每次执行都是一个全新的独立的块作用域，用let声明的变量传入到 for循环体的作用域后，不会发生改变，不受外界的影响。
+      for(let i = 0; i < 10; i++){
+        setTimeout(function(){
+          //console.log(i);
+        },0);
+      }
+      for(var i = 0; i < 10; i++){
+        setTimeout(function(){
+          //console.log(i);
+        },0);
+      }
+
+      //3. 用let声明的变量没有变量提升
+      // ES6 明确规定，如果区块中存在let和const命令，这个区块对这些命令声明的变量，从一开始就形成了封闭作用域。
+      // 凡是在声明之前就使用这些变量，就会报错。
+      // 总之，在代码块内，使用let命令声明变量之前，该变量都是不可用的。
+      // 这在语法上，称为“暂时性死区”（temporal dead zone，简称 TDZ）。
+
+      //4. let变量不能重复声明
+      // let不允许在相同作用域内，重复声明同一个变量。
+
+      //ES6的let让js真正拥有了块级作用域，也是向这更安全更规范的路走，虽然加了很多约束，但是都是为了让我们更安全的使用和写代码。
+
+
+      let d = 3;
+      function fn1(){
+        console.log(d);//3
+          let a1 = 100;
+          function fn2(){
+            console.log(d);//3
+              let a2 = 200;
+              function fn3 (){
+                console.log(d);//3
+                  let a3 = 300;
+                  return d+a1+a2+a3;
+              }
+              fn3();
+          }
+          fn2();
+      }
+      let ret = fn1();
+      console.log(ret)  //undefined
+      //但是试着在fn2(); fn3();前加上return 就会有值
+
+
+
+
+    </script>
+  </body>
+</html>

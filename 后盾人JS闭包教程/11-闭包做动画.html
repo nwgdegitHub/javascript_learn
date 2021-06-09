@@ -16,7 +16,8 @@
   </body>
   <script type="text/javascript">
     let btns = document.querySelectorAll("button");
-    btns.forEach(function(item){
+    btns.forEach(
+      function(item){
       console.log(item);
       let left = 1; //重复点击加速
       let interval = false //解决加速问题 防止产生无限个定时器

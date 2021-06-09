@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+  </head>
+  <body>
+    <script type="text/javascript">
+
+
+// JS是单线程运行的
+// 异步要基于回调来实现
+// event loop就是异步回调的实现原理
+// JS如何执行
+// 从前到后，一行一行执行
+// 如果某一行执行报错,则停止下面代码的执行
+// 先把同步代码执行完,再执行异步代码
+
+
+      console.log("start");
+      setTimeout(()=>{
+        console.log("callback")
+      },2000)
+      console.log("end");
+
+// 1-1 console.log("start"）执行先将其放在调用栈中,控制台输出"start"
+// 1-2 console.log("start")执行完毕,将其从调用栈中移除
+// 1-3 调用栈中移除setTimeout(),执行console.log("end")
+// 1-4 console.log("end")执行之后,也从调用栈中移除
+// 同步代码执行完毕,就会启动event-loop，是浏览器内核启动的。
+// 1-5 同步代码执行完毕之后,Event Loop会不断的循环callback Queue，看里面是否有异步任务
+// 1-6 最后Event Loop会将callback 	Queue中的代码放到调用栈里去
+// 1-7   callback在调用栈中被执行完毕之后,被从调用栈中移除
+
+    </script>
+  </body>
+</html>
