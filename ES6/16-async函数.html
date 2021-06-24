@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+  </head>
+  <body>
+    <script type="text/javascript">
+
+      //async 函数返回一个 Promise 对象，可以使用 then 方法添加回调函数。
+      async function test(){
+        return "Hi~"
+      }
+      console.log(test);
+      console.log(test());
+
+      test().then(v=>{
+        console.log(v);
+      })
+
+
+      //await 关键字仅在 async function 中有效。如果在 async function 函数体外使用 await ，你只会得到一个语法错误。
+
+
+      async function test2(){
+        setTimeout(function(){
+          console.log("你会在5秒后看到我");
+        }, 0)
+
+      }
+      // test2().then(v=>{
+      //   console.log(v);
+      // })
+
+      async function helloAsync(){
+        await test2(); //async 函数执行时，如果遇到 await 就会先暂停执行 ，等到触发的异步操作完成后，恢复 async 函数的执行并返回解析值。
+        console.log("我是一个async 修饰的函数"); //先输出
+      }
+      helloAsync();
+
+
+
+    </script>
+  </body>
+</html>

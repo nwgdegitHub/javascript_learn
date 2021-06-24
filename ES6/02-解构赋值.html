@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+  </head>
+  <body>
+    <script type="text/javascript">
+
+      //解构数组
+      //数组的话需要记住三点，1. 按顺序来 2. 可以有默认值 3. 可以有空的用逗号代替
+      let [a, b, c] = [3, 2, 1]
+      console.log(a, b, c);
+
+      let [d, [[e], f]] = [4, [[5], 6]]
+      console.log(d, e, f);
+
+      let [g, , h] = [7, 8, 9]
+      console.log(g, h);
+
+      let [i = 1, j] = []; // i = 1, j = undefined
+
+      let [k, ...l] = [1, 2, 3];
+      //k = 1
+      //l = [2, 3]
+
+      //let [a, b, c, d, e] = 'hello'; //Uncaught SyntaxError: Identifier 'a' has already been declared
+      //console.log(a, b, c, d, e); //前面用过这些变量了 就不能再用了
+
+      //解构字符串
+      let [m, n, o, p, q] = 'hello';
+      console.log(m, n, o, p, q);
+
+
+      //解构对象
+// 对象的话记住找
+//
+// 键相同的，不需要按顺序，因为对象本身就是无序的，
+// 可以有别名(只会创建别名的变量)
+// 可以有默认值
+// 对象嵌套对象或数组的话，需要用到冒号，见下面的例子
+
+      let { name, age } = { name: 'lw', age: 29}
+      console.log(name, age);
+
+      let obj = {department: ['人力', {work: 'IT'}]}
+
+      let {department: [x, {work}]} = obj
+      //console.log(department); //Uncaught ReferenceError: department is not defined
+      console.log(x, work);
+      let {department: [x2, { }]} = obj
+      console.log(x2);
+
+      //let {r, s, ...rest} = {a: 10, b: 20, c: 30, d: 40};
+      //console.log(r, s);//undefined undefined 注意解构左边必须对应右边一样的key
+      let {r, s, ...rest} = {r: 10, s: 20, c: 30, d: 40};
+      console.log(r, s);
+      console.log(rest);
+
+      let {t = 10, u = 5} = {t: 3}
+      console.log(t, u); //3,5
+
+      //这里我的理解是给t取了一个别名tt 并且给了默认值
+      let {t: tt = 10, u: uu = 5} = {t: 3}
+      console.log(t, u); //3,5
+      console.log(tt, uu);//3,5
+
+
+//在函数中的运用
+      function sum(...nums){
+        return nums.reduce((x,y)=>{return x+y})
+      }
+
+      console.log(sum(1,2,3,4,5));
+
+      function sum2(...nums){
+        return nums.reduce((x,y)=>x+Math.round(y),0)
+      }
+      console.log(sum2(2.1, 1.2, 1,3));
+
+
+//相当于 {形参} = {实参}
+      function foo({x, y = 5}) {
+        console.log(x, y);
+      }
+
+      foo({}) // undefined 5
+      foo({x: 1}) // 1 5
+      foo({x: 1, y: 2}) // 1 2
+      //foo() // TypeError: Cannot read property 'x' of undefined
+
+//上面代码只使用了对象的解构赋值默认值，没有使用函数参数的默认值。
+//只有当函数foo的参数是一个对象时，变量x和y才会通过解构赋值生成。如果函数foo调用时没提供参数，变量x和y就不会生成，从而报错。
+//通过提供函数参数的默认值，就可以避免这种情况。
+
+function foo2({x, y = 5} = {}) {
+  console.log(x, y);
+}
+
+foo2() // undefined 5
+
+//一个复杂的嵌套的例子
+
+    let frank = {
+        name4: "Tom",
+        age4: 18,
+        children:[
+            {name1:"Jack"},
+            {name2:"Jerry"},
+            {name3:"Alice"},
+        ]
+    }
+
+    let {name4,children:[,{name2:secondName='任我行'},{name3:thirdName}],age4} = frank
+    console.log(name4);
+    // console.log(name2); //未定义报错
+    console.log(secondName);
+    console.log(thirdName);
+    // console.log(children); //未定义报错 注意这里嵌套 和别名有区别
+    // console.log(name2,secondName);
+    // console.log(name3,thirdName);
+    console.log(age4);
+
+
+//分号问题
+//在js中，以(,[,{开头的语句会被js移到上一行，如果写js跟我一样是不打分号的，那么要注意在这三个符号开头的语句前面要加一个分号
+
+let z=1,y=2
+;[z,y] = [y,z]//这里分号一定要加
+
+
+//注意解构 有分号 是解不了分号前这个key对应的对象的，也就是说下面这样kk是未定义的
+
+let {kk: {xx : xx0, yy: yy0}} = {kk: {xx: '123', yy: 456}}
+console.log(kk);// Uncaught ReferenceError: kk is not defined
+console.log(xx);
+console.log(xx0);
+//如果这样let {kk} = {kk: {xx: '123', yy: 456}} ，那么kk = {xx: '123', yy: 456}
+    </script>
+  </body>
+</html>

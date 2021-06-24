@@ -13,7 +13,7 @@
       }
       let res = f1()
       console.log(res);//10
-      //所以用let声明的变量 能全局使用
+
 
       const y = 20
       function f2(){
@@ -31,9 +31,11 @@
       var res3 = f3()
       console.log(res3);//30
 
+      //上面3种用法说明不了什么，不管用什么声明定义，在下面的函数中都可以使用
+
       // let和var的区别?
       //1. ES6 新增了let命令，用来声明局部变量。它的用法类似于var，但是所声明的变量，只在let命令所在的代码块内有效，而且有暂时性死区的约束。
-      // var 没有纳入块级作用域 用var 声明的变量在全局作用域中 即使var 在{}
+      // var 没有纳入块级作用域 用var 声明的变量在全局作用域中 即使var 在{} 也就是函数级作用域
       {
         var a = 100;
       }
@@ -52,13 +54,13 @@
       // JS中的for循环体比较特殊，每次执行都是一个全新的独立的块作用域，用let声明的变量传入到 for循环体的作用域后，不会发生改变，不受外界的影响。
       for(let i = 0; i < 10; i++){
         setTimeout(function(){
-          //console.log(i);
-        },0);
+          // console.log(i); //
+        },1000);
       }
       for(var i = 0; i < 10; i++){
         setTimeout(function(){
-          //console.log(i);
-        },0);
+          // console.log(i);
+        },2000);
       }
 
       //3. 用let声明的变量没有变量提升
@@ -66,6 +68,13 @@
       // 凡是在声明之前就使用这些变量，就会报错。
       // 总之，在代码块内，使用let命令声明变量之前，该变量都是不可用的。
       // 这在语法上，称为“暂时性死区”（temporal dead zone，简称 TDZ）。
+
+      //console.log(xx);//error
+      //let xx;
+
+console.log(yy); //不会error
+var yy;
+
 
       //4. let变量不能重复声明
       // let不允许在相同作用域内，重复声明同一个变量。
@@ -90,10 +99,43 @@
           fn2();
       }
       let ret = fn1();
-      console.log(ret)  //undefined
+      console.log(ret)  //undefined 很好理解 在函数没有返回
       //但是试着在fn2(); fn3();前加上return 就会有值
 
+      console.log("说到const================> ");
 
+      // const h;//Uncaught SyntaxError: Missing initializer in const declaration
+      const j = 999;
+      // console.log(j++);// Uncaught TypeError: Assignment to constant variable. 禁止修改
+      // j = 1000; // Uncaught TypeError: Assignment to constant variable. 禁止修改
+
+      //所以：
+      //1.const定义的变量不可以修改，而且必须初始化。
+      //2.var定义的变量可以修改，如果不初始化会输出undefined，不会报错。
+      //3.对函数外的影响，let是块级作用域，函数内部使用let定义后，对函数外部无影响。
+
+      //参考自：https://www.cnblogs.com/ksl666/p/5944718.html
+
+      let l = 888;
+      l = 887;
+      console.log(l); // 887
+
+      function x1(){
+        let o = 123;
+      }
+      // console.log(o);// Uncaught ReferenceError: o is not defined , 所以函数内使用let 定义变量对函数外无影响
+
+      function y1(){
+        var y2 = 123;
+      }
+      // console.log(y2); //ReferenceError: y2 is not defined, 所以函数内使用var 定义变量对函数外无影响
+      console.log(window.y2); //undefined
+
+      function z1(){
+        var z2 = 123;
+      }
+      // console.log(z2); //Uncaught ReferenceError: z2 is not defined, 所以函数内使用var 定义变量对函数外无影响
+      console.log(window.z2); //undefined
 
 
     </script>

@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+  </head>
+  <body>
+    <div id="div1">testDiv</div>
+    <div id="div2">div2</div>
+      <script>
+          //this丢失现象
+          //document.addEventListener('DOMContentLoaded',function(){
+          // var divs=document.getElementsByTagName('div');
+          //     console.log(divs);
+          //     for (let i = 0; i < divs.length; i++) {
+          //         divs[i].onclick=function(){
+          //             alert(i);
+          //         }
+          //     };
+
+          //   var divs=document.getElementsByTagName('div');
+          //   //console.log(divs);
+          //   for (var i = 0; i < divs.length; i++) {
+          //       (function(i){
+          //           divs[i].onclick=function(){
+          //               alert(i);
+          //           }
+          //       })(i);
+          //   };
+
+          // },false);
+
+          // 比如：我们要打印数组中的每个元素
+
+// 1. 命令式编程
+// let arr = [1, 2, 3];
+// for (let i = 0, len = arr.length; i < len; i++) {
+//   console.log(arr[i])
+// }
+//
+// // 2. 声明式编程
+// let arr = [1, 2, 3];
+// arr.forEach(item => {
+//   console.log(item)
+// })
+
+/*
+* 相对于命令式编程的 for 循环拿到每个元素，声明式编程不需要自己去找每个元素
+* 因为 forEach 已经帮我们拿到了，就是 item，直接打印出来就行
+
+函数式编程大多时候都是在声明我需要做什么，而非怎么去做。这种编程风格称为**声明式编程 **。可读性高
+*/
+
+// 定义：高阶函数就是接受函数作为参数或者返回函数作为输出的函数。
+// 函数作为参数：常见的就是回调函数
+// 作为输出的函数：
+function isType (type) {
+    return function (obj) {
+        return Object.prototype.toString.call(obj) === `[object ${type}]`
+    }
+}
+
+const isArray = isType('Array'); // 判断数组类型的函数
+const isString = isType('String'); // 判断字符串类型的函数
+console.log(isArray([1, 2])); // true
+console.log(isString({}));  // false
+
+
+//所以
+//闭包可以缓存变量到内存中，函数执行完毕不会立即销毁
+//高阶函数的核心是闭包，利用闭包缓存一些未来会用到的变量
+
+
+console.log("那么js 闭包中缓存的变量什么时候销毁？");
+const outerFn = () => {
+	    let count = 0;
+	    const innerFn = () => {
+	        console.log('count', ++count);
+	    }
+	    return innerFn;
+	}
+
+	let closure = outerFn(); // 创建第一个闭包
+ 	closure();//1
+	closure();//2
+	closure = outerFn(); // 销毁第一个闭包，创建第二个闭包
+	closure();//1
+	closure();//2
+	closure = null; // 销毁闭包
+// ————————————————
+// 版权声明：本文为CSDN博主「李子玅」的原创文章，遵循CC 4.0 BY-SA版权协议，转载请附上原文出处链接及本声明。
+// 原文链接：https://blog.csdn.net/li459559937/article/details/115230757
+
+// 颗粒化 ？ 柯里化？
+
+
+      </script>
+  </body>
+</html>
