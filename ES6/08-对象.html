@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+  </head>
+  <body>
+    <script type="text/javascript">
+      //Object.assign(target, source_1, ···) 用于将源对象的所有可枚举属性复制到目标对象中。
+      let target = {a: 1};
+      let object2 = {b: 2};
+      let object3 = {c: 3};
+      Object.assign(target,object2,object3);
+      console.log(target);
+
+      //想研究一下obj的set/get方法
+      // let obj = {
+      //   name: 'LW',
+      //   $sex: null,
+      //   //没调用
+      //   set: function(obj, prop, value){
+      //
+      //     if (prop === 'age') {
+      //       console.log(obj, prop, value);
+      //     }
+      //     obj[prop] = value;
+      //   },
+      //   //走了
+      //   set sex(val){
+      //     this.$sex = '女'
+      //     console.log(val);
+      //
+      //   },
+      //   get sex(){
+      //     return '男'
+      //   }
+      // }
+      //
+      // obj.name = "帅哥"
+      // obj.age = 29;
+      // obj.$sex = '不知道'
+      // console.log(obj.$sex);
+
+
+    </script>
+  </body>
+</html>
