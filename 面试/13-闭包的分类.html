@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+  </head>
+  <body>
+    <script type="text/javascript">
+      //一般指函数闭包
+      //对象闭包（with）与异常闭包（catch）少见
+
+
+      var b=15;
+      function foo()
+      {
+          var a={b:20};
+          b=10;
+          with(a)
+          {
+              var b=30;//★★★
+          }
+          alert(a.b);//30
+          alert(b);//10
+      }
+      foo();
+      alert(b); //15
+
+
+
+
+
+
+
+
+    </script>
+  </body>
+</html>

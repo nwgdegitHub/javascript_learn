@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+  </head>
+  <body>
+    <script type="text/javascript">
+
+      // var a = 100;
+      // var b = true;
+      // function test(){
+      //   console.log(a);
+      //   console.log(b);
+      //
+      //   //注释试试看
+      //   var a = 200;
+      //   console.log(a);
+      // }
+      // test()
+
+
+//       var test = 'right'; //
+//       Object.prototype.test = 'wrong';
+// // var test = 'right'; //不管位置在哪 全局变量 覆盖高于对象属性
+//       (function f() { alert(test); })();
+//       console.dir(function f() { alert(test); });
+// 这里要理解 函数也是对象 所以能拥有test属性 也能访问全局变量
+
+
+      //变量的作用域练习.html:34 Uncaught ReferenceError: test is not defined
+      //这里与函数有区别 简单函数这里只会报 undefined
+      // (function f() {
+      //     alert(test);
+      // })();
+      // Object.prototype.test = 'ccc';
+      // Object.test = "bbb"
+      // window.test = "aaa";
+
+      // Object.test = "bbb"; //Object.test = “XXX”这样定义，为类属性，或称静态属性。类属性优先级都是比实例属性低的
+      // Object.prototype.test = 'ccc';
+      // window.test = "aaa";
+      // (function f() {
+      //     alert(test);
+      // })();
+
+      // alert(window instanceof Object)
+
+    </script>
+  </body>
+</html>

@@ -7,7 +7,8 @@
 // var b = 2;
 // export {a,b};
 
-// 第三种 导出函数 , 注意导出的时候一定不能加 {}, 例如 export default {foo}; 这是错误的,也就是说只有在导出多个变量或者函数时才会用到{}
+// 第三种 导出函数 , 注意导出的时候一定不能加 {}, 例如 export default {foo}; 这是错误的,也就是说只有在导出多个变量或者多个函数时才会用到{}
+
 // export default function foo(a, b) {  return a + b;}
 // 等价于
 // function foo(a, b) {  return a + b;}
